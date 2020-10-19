@@ -1,6 +1,7 @@
 //
 //  main.cpp
 //  从上一行tmp推下一行newtmp就行了
+//  其实这个写的不好，更好的写法看119题。不需要新建一个newtmp
 //  Copyright © 2020 ji luyang. All rights reserved.
 //
 
