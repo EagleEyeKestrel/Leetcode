@@ -8,9 +8,9 @@ class Solution {
 public:
     int minSubArrayLen(int s, vector<int>& nums) {
         int n = nums.size(), sum = 0, res = INT_MAX, l = 0;
-        for(int r = 0; r < n; r++) {
+        for (int r = 0; r < n; r++) {
             sum += nums[r];
-            while(sum >= s) {
+            while (sum >= s) {
                 res = min(res, r - l + 1);
                 sum -= nums[l];
                 l++;
