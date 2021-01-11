@@ -12,14 +12,14 @@ public:
         int val, cnt;
     };
     int sumSubarrayMins(vector<int>& A) {
-        long long res = 0, n = A.size(), mod =1e9 + 7, now = 0;
+        long long res = 0, n = A.size(), mod = 1e9 + 7, now = 0;
         stack<node> s;
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             node tmp;
             tmp.val = i;
             tmp.cnt = 1;
             now += A[i];
-            while(!s.empty() && A[s.top().val] >= A[i]) {
+            while (!s.empty() && A[s.top().val] >= A[i]) {
                 now -= (A[s.top().val] - A[i]) * s.top().cnt;
                 tmp.cnt += s.top().cnt;
                 s.pop();
