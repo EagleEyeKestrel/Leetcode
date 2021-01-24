@@ -9,19 +9,19 @@
 class Solution {
 public:
     bool isScramble(string s1, string s2) {
-        if(s1.size() != s2.size()) return false;
-        if(s1 == s2) return true;
+        if (s1.size() != s2.size()) return false;
+        if (s1 == s2) return true;
         string str1 = s1, str2 = s2;
         sort(str1.begin(), str1.end());
         sort(str2.begin(), str2.end());
-        if(str1 != str2) return false;
+        if (str1 != str2) return false;
         int n = s1.size();
-        for(int i = 1; i < n; i++) {
+        for (int i = 1; i < n; i++) {
             string s11 = s1.substr(0, i), s12 = s1.substr(i);
             string s21 = s2.substr(0, i), s22 = s2.substr(i);
             string s23 = s2.substr(0, n - i), s24 = s2.substr(n - i);
-            if(isScramble(s11, s21) && isScramble(s12, s22)) return true;
-            if(isScramble(s11, s24) && isScramble(s12, s23)) return true;
+            if (isScramble(s11, s21) && isScramble(s12, s22)) return true;
+            if (isScramble(s11, s24) && isScramble(s12, s23)) return true;
         }
         return false;
     }
