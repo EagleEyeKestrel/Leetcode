@@ -11,7 +11,7 @@ public:
         int b = n - 1;
         long long res = 1;
         //(m+n-2)!/(n-1)!(m-1)!
-        for(int i = n; i <= m + n - 2; i++) {
+        for (int i = n; i <= m + n - 2; i++) {
             res = res * i / (i - n + 1);
         }
         return (int)res;

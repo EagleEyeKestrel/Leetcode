@@ -11,7 +11,7 @@ public:
         char str[2 * n + 3];
         int p[2 * n + 2];
         str[0] = '\\';
-        for(int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; i++) {
             str[2 * i - 1] = '#';
             str[2 * i] = s[i - 1];
         }
@@ -19,10 +19,10 @@ public:
         str[2 * n + 2] = '\0';
         p[0] = 1;
         int mx = 0, id = 0, res = 0;
-        for(int i = 1; i <= 2 * n + 1; i++) {
+        for (int i = 1; i <= 2 * n + 1; i++) {
             p[i] = mx > i ? min(p[2 * id - i], mx - i) : 1;
-            while(str[i + p[i]] == str[i - p[i]]) p[i]++;
-            if(i + p[i] > mx) {
+            while (str[i + p[i]] == str[i - p[i]]) p[i]++;
+            if (i + p[i] > mx) {
                 id = i;
                 mx = i + p[i];
             }

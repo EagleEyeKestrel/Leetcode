@@ -23,11 +23,10 @@ public:
                     int res = (k + 1) * (k + 1) + dp[i + 1][j][0];
                     for(int l = i + 1; l <= j; l++) {
                         if(boxes[l] == boxes[i]) {
-                            res=max(res, dp[i + 1][l - 1][0] + dp[l][j][k + 1]);
+                            res = max(res, dp[i + 1][l - 1][0] + dp[l][j][k + 1]);
                         }
                     }
                     dp[i][j][k] = res;
-                    cout<<i<<" "<<j<<" "<<k<<" "<<res<<endl;
                 }
             }
         }
