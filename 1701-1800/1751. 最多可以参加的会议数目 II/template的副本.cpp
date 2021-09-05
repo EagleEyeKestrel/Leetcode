@@ -6,6 +6,7 @@
 //  可以发现dp[i][j]的递推方程，如果不取i，那么就是dp[i-1][j]
 //  关键是取i时，要找到和i活动不冲突的活动们。可以知道i活动的starttime
 //  然后要找到结束时间<starttime的所有活动，直接二分查找id，在前id-1安排恰好j-1个活动
+//  当然，对于二分的id结果，可以先预处理出来，复杂度可以更低。当然这里不预处理就能快速过了
 //  Copyright © 2021 ji luyang. All rights reserved.
 //
 
@@ -14,7 +15,7 @@ public:
     int maxValue(vector<vector<int>>& events, int k) {
         int n = events.size();
         sort(events.begin(), events.end(), [](auto &a, auto &b) {
-            if (a[0] == b[0]) return a[1] < b[1];
+            if (a[1] == b[1]) return a[0] < b[0];
             return a[1] < b[1];
         });
         int a[n];
