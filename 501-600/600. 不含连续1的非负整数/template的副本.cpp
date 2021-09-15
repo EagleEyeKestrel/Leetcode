@@ -15,11 +15,11 @@ public:
         int dp[32];
         dp[0] = 1;
         dp[1] = 2;
-        for(int i = 2; i < 32; i++) dp[i] = dp[i - 1] + dp[i - 2];
+        for (int i = 2; i < 32; i++) dp[i] = dp[i - 1] + dp[i - 2];
         int res = 0, last = 0;
-        for(int i = 31; i >= 1; i--) {
-            if((num >> (i - 1)) & 1) {
-                if(!last) {
+        for (int i = 31; i >= 1; i--) {
+            if ((num >> (i - 1)) & 1) {
+                if (!last) {
                     res += dp[i - 1];
                     last = 1;
                 } else {

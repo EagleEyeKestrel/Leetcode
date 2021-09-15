@@ -3,7 +3,7 @@
 //  比较更正统的状压的话，可以发现每个积肯定可以表示成30以下素数的积。而且每个素数不超过1个
 //  而30以下的素数刚好是10个。所以可以用1024以下的数来表示一个积
 //  先预处理出nums中所有的mask数量。然后用dp方程
-//  dp[mask|j]+=dp[mask]*cnt[j]，即对于一组素数p1 p2 .. pk的积，只会记一次，记在最大的素数上
+//  dp[mask|j]+=dp[mask]*cnt[j]，即对于一组素数p1 p2 .. pj-1 和pj的积，只会记一次
 //  Copyright © 2021 ji luyang. All rights reserved.
 //
 
