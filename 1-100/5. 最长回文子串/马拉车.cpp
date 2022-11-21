@@ -1,37 +1,47 @@
 //
 //  main.cpp
 //  马拉车算法
+//  p[i]表示str[i]的回文半径
+//  真实的回文串长度是p[i] / 2(p[i]一定为奇数)
 //  Copyright © 2021 ji luyang. All rights reserved.
 //
 
 class Solution {
 public:
     string longestPalindrome(string s) {
-        char str[2048];
-        int p[2048];
-        for (int i = s.size(); i >= 0; i--) {
-            str[2 * i + 2] = s[i];
-            str[2 * i + 1] = '#';
+        int n = s.size();
+        char str[2 * n + 3];
+        str[0] = '$';
+        for (int i = 1; i <= n; i++) {
+            str[2 * i - 1] = '#';
+            str[2 * i] = s[i - 1];
         }
-        str[0] = '\\';
-        int mx = 0, id = 0, l = 2 * s.size(), maxv = 0, maxpos = 0;
+        str[2 * n + 1] = '#';
+        str[2 * n + 2] = '\0';
+        int p[2 * n + 3];
         p[0] = 1;
-        for (int i = 1; i <= l; i++) {
-            p[i] = mx > i ? min(p[2 * id - i], mx - i) : 1;
-            while (str[i + p[i]] == str[i - p[i]]) p[i]++;
-            if (i + p[i] > mx) {
-                mx = i + p[i], id = i;
+        int mx = 0, id = 0;
+        for (int i = 1; i <= 2 * n; i++) {
+            p[i] = mx > i ? min(mx - i, p[2 * id - i]) : 1;
+            while (str[i + p[i]] == str[i - p[i]])
+                p[i]++;
+            if (i + p[i] - 1 > mx) {
+                mx = i + p[i] - 1;
+                id = i;
             }
         }
-        for (int i = 1; i <= l; i++) {
-            if (p[i] > maxv) {
-                maxv = p[i];
+        int maxpos = -1, maxlen = 0;
+        for (int i = 1; i <= 2 * n; i++) {
+            if (p[i] > maxlen) {
+                maxlen = p[i];
                 maxpos = i;
             }
         }
         string res;
-        for (int i = maxpos - maxv + 1; i < maxpos + maxv; i++) {
-            if (str[i] != '#') res.push_back(str[i]);
+        for (int i = maxpos - maxlen + 1; i <= maxpos + maxlen - 1; i++) {
+            if (str[i] != '#') {
+                res.push_back(str[i]);
+            }
         }
         return res;
     }

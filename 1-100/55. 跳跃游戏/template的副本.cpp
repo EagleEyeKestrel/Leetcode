@@ -7,11 +7,11 @@
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
-        int n = nums.size(), maxd = 0;
+        int n = nums.size(), mx = 0;
         for (int i = 0; i < n; i++) {
-            if (maxd < i) return false;
-            if (i + nums[i] > maxd) maxd = i + nums[i];
-            if (maxd >= n - 1) return true;
+            if (mx < i)
+                return false;
+            mx = max(mx, i + nums[i]);
         }
         return true;
     }

@@ -10,30 +10,26 @@
  * struct ListNode {
  *     int val;
  *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode* dummy = new ListNode(-1);
-        ListNode* cur = dummy;
-        ListNode* p1 = l1, *p2 = l2;
-        int c = 0;
-        while(p1 || p2) {
-            int a = p1 ? p1->val : 0;
-            int b = p2 ? p2->val : 0;
-            int d = (a + b + c) % 10;
-            c = (a + b + c) / 10;
-            ListNode* newNode = new ListNode(d);
-            cur->next = newNode;
-            cur = newNode;
-            if(p1) p1 = p1->next;
-            if(p2) p2 = p2->next;
-        }
-        if(c) {
-            ListNode* newNode = new ListNode(c);
-            cur->next = newNode;
+        ListNode *dummy = new ListNode();
+        ListNode *p1 = l1, *p2 = l2, *now = dummy;
+        int carry = 0;
+        while (p1 || p2 || carry > 0) {
+            int a = (p1 ? p1->val : 0);
+            int b = (p2 ? p2->val : 0);
+            ListNode *node = new ListNode((a + b + carry) % 10);
+            now->next = node;
+            now = node;
+            carry = (a + b + carry) / 10;
+            p1 = p1 ? p1->next : p1;
+            p2 = p2 ? p2->next : p2;
         }
         return dummy->next;
     }
